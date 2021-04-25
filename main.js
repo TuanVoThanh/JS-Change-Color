@@ -1,29 +1,14 @@
-const colors = [
-  'red',
-  'orange',
-  'yellow',
-  'green',
-  'blue',
-  'purple',
-  'indigo',
-  'violet'
-]
 
-const changeColor = function() {
-  const h1 = document.querySelector('h1');
-  const colorH1 = this.style.backgroundColor;
-  h1.style.color = colorH1;
-  h1.innerText = `It's ${colorH1.toUpperCase()}`;
-}
+const addItemInput = document.querySelector('#addItem');
+const itemsUL = document.querySelector('#items');
 
-const container = document.querySelector('#boxes');
-container.classList.add('boxes');
-
-for ( let color of colors ) {
-  const box = document.createElement('div');
-  box.classList.add('box');
-  box.style.backgroundColor = color;
-  container.appendChild(box);
-
-  box.addEventListener('click', changeColor)
-}
+addItemInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      if (!this.value) return;
+      // add a new item to list
+      const newItemText = this.value;
+      const newItem = document.createElement('li');
+      newItem.innerText = newItemText;
+      itemsUL.appendChild(newItem)
+    }
+})
